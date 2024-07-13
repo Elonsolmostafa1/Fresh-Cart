@@ -7,17 +7,16 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class CartService {
   constructor(private _HttpClient: HttpClient) {
-    // observer observable 
-    this.updateCartItemsCount()
-      
+    // observer observable
+    this.updateCartItemsCount();
   }
   // singleton instance
   // interceptor (req , response)
 
-  cartItemsNum = new BehaviorSubject<number>(0)
+  cartItemsNum = new BehaviorSubject<number>(0);
 
   // isAdded = true
-  // if isAdded ===> true ===> toggle ===> false 
+  // if isAdded ===> true ===> toggle ===> false
   /*
   isAdded= true;
   handleWishlistRequest()
@@ -37,21 +36,19 @@ export class CartService {
 
 
   */
-  updateCartItemsCount()
-  {
+  updateCartItemsCount() {
     this.getUserCart().subscribe({
-      next:(response)=>{this.cartItemsNum.next(response.numOfCartItems)  },
-      error:(err)=>{
-        // make sure ===> 404 
-        if(err.status == 404)
-        {
+      next: (response) => {
+        this.cartItemsNum.next(response.numOfCartItems);
+      },
+      error: (err) => {
+        // make sure ===> 404
+        if (err.status == 404) {
           // notify navbar ===> numOfCartItems ===> 0
-          this.cartItemsNum.next(0)
-
+          this.cartItemsNum.next(0);
         }
-        
-      }
-    })
+      },
+    });
   }
 
   addCartItem(id: string): Observable<any> {
@@ -82,8 +79,8 @@ export class CartService {
 
   onlinePayment(cartId: any, shippingAddress: any): Observable<any> {
     return this._HttpClient.post(
-      `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartId}?url=http://localhost:4200`,
-      {shippingAddress:shippingAddress}
+      `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartId}?url=https://fresh-cart-ox61.vercel.app`,
+      { shippingAddress: shippingAddress }
     );
   }
 }
