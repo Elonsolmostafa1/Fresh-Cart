@@ -1,0 +1,16 @@
+
+<div class="w-50 mx-auto my-5">
+    <form (ngSubmit)="handleShippingAddress(shippingAddressForm)"  [formGroup]="shippingAddressForm">
+        <h1 class="text-main my-3 h4">Shipping Address</h1>
+        <label for="details">details</label>
+        <input class="form-control" type="text" id="details" formControlName="details" />
+
+        <label class="mt-3" for="phone">phone</label>
+        <input class="form-control" type="text" id="phone" formControlName="phone" />
+
+        <label class="mt-3" for="city">city</label>
+        <input class="form-control" type="text" id="city" formControlName="city" />
+
+        <button class="btn bg-main text-white d-block ms-auto my-3">Pay Now</button>
+    </form>
+</div>

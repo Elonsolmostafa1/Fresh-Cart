@@ -1,0 +1,18 @@
+    <div class="p-4 product ">
+        
+        <i (click)="addToWishList(product._id)" [class]="isWishListProduct(product._id)? 'fas text-danger':'fa-regular'" class="cursor-pointer fa-heart fs-4"></i>
+        <a [routerLink]="['/product',product._id]">
+
+        <img class="w-100" [src]="product.imageCover" [alt]="product.title" />
+        <span class="font-sm text-main fw-bold">{{product.category.name}}</span>
+        <p class="fw-bold">{{product.title|titleSlice:2}}</p>
+        <div class="d-flex justify-content-between">
+            <span class="fw-bold font-sm">{{product.price|addEGP}}</span>
+            <div>
+                <i class="fa-solid fa-star rating-color mx-2"></i>
+                <span class="fw-bold font-sm">{{product.ratingsAverage}}</span>
+            </div>
+        </div>
+    </a>
+        <button (click)="addToCart(product._id)" class="btn bg-main w-100 text-white mt-3">+ Add To Cart</button>
+    </div>

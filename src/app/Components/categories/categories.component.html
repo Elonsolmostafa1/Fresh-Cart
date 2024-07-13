@@ -1,0 +1,11 @@
+<h3 class="my-5 border p-2 text-center fw-bold">Choose Your Categories</h3>
+<div class="row g-4">
+    <div *ngFor="let category of allCategories" class="col-6 col-sm-4 col-md-3">
+        <a [routerLink]="['/products/category',category._id]">
+            <div class="border p-3 shadow-sm rounded">
+                <img height="300px" class="w-100 rounded object-fit-cover" [src]="category.image" alt="" />
+                <p class="text-center mt-2 fw-bold">{{category.name}}</p>
+            </div>
+        </a>
+    </div>
+</div>

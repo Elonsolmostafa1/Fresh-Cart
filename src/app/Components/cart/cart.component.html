@@ -1,0 +1,37 @@
+<div class="container bg-main-light p-4 border shadow-sm my-5 rounded">
+    <h4 class="my-3 fw-bold">Shop Cart</h4>
+    <p class="text-main fw-bold font-sm pb-3 border-bottom">Total Price: {{cartDetails?.totalCartPrice|addEGP}}</p>
+    
+    <div *ngFor="let cartItem of cartDetails?.products" class="row align-items-center p-2 border-bottom pb-3">
+        <div class="col-md-1">
+            <div>
+                <img class="w-100 img-thumbnail" [src]="cartItem.product.imageCover" alt="">
+            </div>
+        </div>
+        <div class="col-md-11">
+            <div class="d-flex justify-content-between">
+                <div>
+                    <p class="my-0 fw-bold">{{cartItem.product.title | titleSlice:5}}</p>
+                    <p class="my-0 text-main fw-bold font-sm">Price: {{cartItem.price|addEGP}}</p>
+                    <button (click)="removeCartItem(cartItem.product._id)" class="btn m-0 p-0">
+                        <i class="fa-regular fa-trash-can text-main"></i>
+                        <span class="ms-1 fw-bold font-sm">Remove</span>
+                    </button>
+                </div>
+                
+                <div>
+                    <button (click)="updateCartItem(cartItem.product._id,cartItem.count + 1)" class="border-main rounded">+</button>
+                    <span class="mx-3">{{cartItem.count}}</span>
+                    <button (click)="updateCartItem(cartItem.product._id,cartItem.count - 1)" class="border-main rounded">-</button>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <a [routerLink]="['/shippingAddress',cartDetails?._id]" class="btn bg-main text-white mt-3">
+        Online Payment
+        <img src="./assets/images/visa-1.svg" class="mx-1" width="30px" alt="">
+    </a>
+</div>
+
+<app-loading *ngIf="isLoading"></app-loading>
